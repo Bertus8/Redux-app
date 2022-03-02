@@ -1,3 +1,6 @@
+import * as actions from "../actions/postActions";
+
+
 export const initialState = {
     post: {},
     errors: false,
@@ -5,8 +8,14 @@ export const initialState = {
   };
   
   export default function postReducer(state = initialState, action) {
-    switch (action.type) {
-      default:
-        return state;
+      switch (action.type) {
+        case actions.GET_POST:
+            return {...state,loading:true};
+        case actions.GET_POST_OK:
+            return { posts: action.payload, loading: false, errors: false };
+        case actions.GET_POST_ERROR:
+            return { ...state, loading: false, errors: true };
+        default:
+            return state;
     }
-  }
+}
