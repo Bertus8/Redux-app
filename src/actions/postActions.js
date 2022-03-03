@@ -1,7 +1,7 @@
 export const GET_POST = "GET_POST";
 export const GET_POST_OK = "GET_POST_OK";
 export const GET_POST_ERROR = "GET_POST_ERROR";
-
+const Url = 'https://jsonplaceholder.typicode.com/posts'
 export const actionGetPost = () => ({
   type: GET_POST,
 });
@@ -15,19 +15,13 @@ export const actionGetPostError = () => ({
   type: GET_POST_ERROR,
 });
 
-export function getPost(postId) {
-    return async (dispatch) => {
-        dispatch(actionGetPost());
-
-        try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-            const data = await response.json();
-
-            dispatch(actionGetPostOk(data));
-        } catch (error) {
-            console.log(error);
-            dispatch(actionGetPostError());
-            
-        }
-    };
-}
+export const getPostById = (Id) => {
+    return fetch(`${Url}`+`${Id}`).then((res)=>{
+      if (res.ok) {
+        console.log(res)
+        return res.json();
+    } else {
+        return [];
+    }
+    })
+  }

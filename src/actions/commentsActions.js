@@ -15,17 +15,18 @@ export const actionGetCommentsError = () => ({
   type: GET_COMMENTS_ERROR,
 });
 
-export function getComments(postId) {
+export function getComments(id) {
   return async (dispatch) => {
     dispatch(actionGetComments());
 
     try {
       const response = await fetch(
-        `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
+        `https://jsonplaceholder.typicode.com/comments?postId=${id}`
       );
       const data = await response.json();
 
       dispatch(actionGetCommentsOk(data));
+      console.log(data)
     } catch (error) {
       console.log(error);
       dispatch(actionGetCommentsError());

@@ -2,6 +2,7 @@ export const GET_POSTS = 'GET_POSTS';
 export const GET_POSTS_OK = 'GET_POSTS_OK';
 export const GET_POSTS_ERROR = 'GET_POSTS_ERROR';
 
+
 export const actionGetPosts = () => (
     {
     type: GET_POSTS,
